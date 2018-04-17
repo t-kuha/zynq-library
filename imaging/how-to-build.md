@@ -25,6 +25,9 @@ $ cp -R ./usr/* <Install Dir>
 
 
 #### ffmpeg
+- References
+  - https://trac.ffmpeg.org/wiki/CompilationGuide/RaspberryPi
+  
 ```bash
 $ ./configure \
 > --prefix=<Installation path> \
