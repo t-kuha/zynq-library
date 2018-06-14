@@ -30,6 +30,8 @@ Various Linux library files for Zynq-7000 series
   - https://ffmpeg.org/
   - https://ffmpeg.org/releases/ffmpeg-3.4.1.tar.xz
   
+  - Tips for cross compilation: https://trac.ffmpeg.org/wiki/CompilationGuide/RaspberryPi
+  
 - OpenCV (3.4.0)
   - https://opencv.org/
   - https://github.com/opencv/opencv/archive/3.4.0.tar.gz
