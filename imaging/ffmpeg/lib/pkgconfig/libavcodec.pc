@@ -1,0 +1,14 @@
+prefix=/home/kuriharat/work/ffmpeg-4.0.1/_zynq
+exec_prefix=${prefix}
+libdir=/home/kuriharat/work/ffmpeg-4.0.1/_zynq/lib
+includedir=/home/kuriharat/work/ffmpeg-4.0.1/_zynq/include
+
+Name: libavcodec
+Description: FFmpeg codec library
+Version: 58.18.100
+Requires: libswresample >= 3.1.100, libavutil >= 56.14.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavcodec -pthread -lm
+Libs.private: 
+Cflags: -I${includedir}

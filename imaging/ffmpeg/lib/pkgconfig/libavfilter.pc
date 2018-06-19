@@ -1,0 +1,14 @@
+prefix=/home/kuriharat/work/ffmpeg-4.0.1/_zynq
+exec_prefix=${prefix}
+libdir=/home/kuriharat/work/ffmpeg-4.0.1/_zynq/lib
+includedir=/home/kuriharat/work/ffmpeg-4.0.1/_zynq/include
+
+Name: libavfilter
+Description: FFmpeg audio/video filtering library
+Version: 7.16.100
+Requires: libswscale >= 5.1.100, libavformat >= 58.12.100, libavcodec >= 58.18.100, libswresample >= 3.1.100, libavutil >= 56.14.100
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavfilter -pthread -lm
+Libs.private: 
+Cflags: -I${includedir}
