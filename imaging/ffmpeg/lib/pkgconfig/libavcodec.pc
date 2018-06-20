@@ -6,9 +6,9 @@ includedir=/home/kuriharat/work/ffmpeg-4.0.1/_zynq/include
 Name: libavcodec
 Description: FFmpeg codec library
 Version: 58.18.100
-Requires: libswresample >= 3.1.100, libavutil >= 56.14.100
-Requires.private: 
+Requires: 
+Requires.private: libswresample >= 3.1.100, libavutil >= 56.14.100
 Conflicts:
-Libs: -L${libdir}  -lavcodec -pthread -lm
-Libs.private: 
+Libs: -L${libdir}  -lavcodec 
+Libs.private: -pthread -lm
 Cflags: -I${includedir}
