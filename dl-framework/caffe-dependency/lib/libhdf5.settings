@@ -4,10 +4,10 @@
 General Information:
 -------------------
 		   HDF5 Version: 1.8.20
-		  Configured on: Thu Jun 21 19:39:39 JST 2018
+		  Configured on: Thu Jun 21 20:11:59 JST 2018
 		  Configured by: kuriharat@ubuntu-mini
 		 Configure mode: production
-		    Host system: x86_64-unknown-linux-gnu
+		    Host system: arm-unknown-linux-gnueabihf
 	      Uname information: Linux ubuntu-mini 4.4.0-127-generic #153-Ubuntu SMP Sat May 19 10:58:46 UTC 2018 x86_64 x86_64 x86_64 GNU/Linux
 		       Byte sex: little-endian
 		      Libraries: static, shared
@@ -16,22 +16,22 @@ General Information:
 Compiling Options:
 ------------------
                Compilation Mode: production
-                     C Compiler: /usr/bin/gcc
+                     C Compiler: /home/kuriharat/xilinx/tools/linux-i386/gcc-arm-linux-gnueabi/bin/arm-linux-gnueabihf-gcc
                          CFLAGS: 
-                      H5_CFLAGS: -std=c99 -pedantic -Wall -Wextra -Wundef -Wshadow -Wpointer-arith -Wbad-function-cast -Wcast-qual -Wcast-align -Wwrite-strings -Wconversion -Waggregate-return -Wstrict-prototypes -Wmissing-prototypes -Wmissing-declarations -Wredundant-decls -Wnested-externs -Winline -Wfloat-equal -Wmissing-format-attribute -Wmissing-noreturn -Wpacked -Wdisabled-optimization -Wformat=2 -Wunreachable-code -Wendif-labels -Wdeclaration-after-statement -Wold-style-definition -Winvalid-pch -Wvariadic-macros -Winit-self -Wmissing-include-dirs -Wswitch-default -Wswitch-enum -Wunused-macros -Wunsafe-loop-optimizations -Wc++-compat -Wstrict-overflow -Wlogical-op -Wlarger-than=2048 -Wvla -Wsync-nand -Wframe-larger-than=16384 -Wpacked-bitfield-compat -Wstrict-overflow=5 -Wjump-misses-init -Wunsuffixed-float-constants -Wdouble-promotion -Wsuggest-attribute=const -Wtrampolines -Wstack-usage=8192 -Wvector-operation-performance -Wsuggest-attribute=pure -Wsuggest-attribute=noreturn -Wsuggest-attribute=format -Wdate-time -Wopenmp-simd -Warray-bounds=2 -Wc99-c11-compat -O3 -fstdarg-opt
+                      H5_CFLAGS:  
                       AM_CFLAGS: 
                        CPPFLAGS: 
                     H5_CPPFLAGS: -D_GNU_SOURCE -D_POSIX_C_SOURCE=200112L   -DNDEBUG -UH5_DEBUG_API
-                    AM_CPPFLAGS: 
+                    AM_CPPFLAGS: -D_FILE_OFFSET_BITS=64 
                Shared C Library: yes
                Static C Library: yes
   Statically Linked Executables: no
                         LDFLAGS: 
                      H5_LDFLAGS: 
                      AM_LDFLAGS: 
- 	 	Extra libraries: -lz -ldl -lm 
+ 	 	Extra libraries: -ldl -lm 
  		       Archiver: ar
- 		 	 Ranlib: ranlib
+ 		 	 Ranlib: arm-linux-gnueabihf-ranlib
  	      Debugged Packages: 
 		    API Tracing: no
 
@@ -48,7 +48,7 @@ Features:
                    Threadsafety: no
             Default API Mapping: v18
  With Deprecated Public Symbols: yes
-         I/O filters (external): deflate(zlib)
+         I/O filters (external): 
                             MPE: no
                      Direct VFD: no
                         dmalloc: no

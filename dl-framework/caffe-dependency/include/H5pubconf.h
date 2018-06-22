@@ -78,7 +78,7 @@
 #define H5_HAVE_FEATURES_H 1
 
 /* Define if support for deflate (zlib) filter is enabled */
-#define H5_HAVE_FILTER_DEFLATE 1
+/* #undef H5_HAVE_FILTER_DEFLATE */
 
 /* Define if support for szip filter is enabled */
 /* #undef H5_HAVE_FILTER_SZIP */
@@ -151,7 +151,7 @@
 /* #undef H5_HAVE_LIBWS2_32 */
 
 /* Define to 1 if you have the `z' library (-lz). */
-#define H5_HAVE_LIBZ 1
+/* #undef H5_HAVE_LIBZ */
 
 /* Define to 1 if you have the `longjmp' function. */
 #define H5_HAVE_LONGJMP 1
@@ -316,7 +316,7 @@
 /* #undef H5_HAVE_WINSOCK2_H */
 
 /* Define to 1 if you have the <zlib.h> header file. */
-#define H5_HAVE_ZLIB_H 1
+/* #undef H5_HAVE_ZLIB_H */
 
 /* Define to 1 if you have the `_getvideoconfig' function. */
 /* #undef H5_HAVE__GETVIDEOCONFIG */
@@ -356,7 +356,7 @@
 /* #undef H5_METADATA_TRACE_FILE */
 
 /* Define if we can violate pointer alignment restrictions */
-#define H5_NO_ALIGNMENT_RESTRICTIONS 1
+/* #undef H5_NO_ALIGNMENT_RESTRICTIONS */
 
 /* Define if deprecated public API symbols are disabled */
 /* #undef H5_NO_DEPRECATED_SYMBOLS */
@@ -383,7 +383,7 @@
 #define H5_PACKAGE_VERSION "1.8.20"
 
 /* Width for printf() for type `long long' or `__int64', use `ll' */
-#define H5_PRINTF_LL_WIDTH "l"
+#define H5_PRINTF_LL_WIDTH "unknown"
 
 /* The size of `char', as computed by sizeof. */
 #define H5_SIZEOF_CHAR 1
@@ -410,10 +410,10 @@
 #define H5_SIZEOF_INT8_T 1
 
 /* The size of `int_fast16_t', as computed by sizeof. */
-#define H5_SIZEOF_INT_FAST16_T 8
+#define H5_SIZEOF_INT_FAST16_T 4
 
 /* The size of `int_fast32_t', as computed by sizeof. */
-#define H5_SIZEOF_INT_FAST32_T 8
+#define H5_SIZEOF_INT_FAST32_T 4
 
 /* The size of `int_fast64_t', as computed by sizeof. */
 #define H5_SIZEOF_INT_FAST64_T 8
@@ -434,10 +434,10 @@
 #define H5_SIZEOF_INT_LEAST8_T 1
 
 /* The size of `long', as computed by sizeof. */
-#define H5_SIZEOF_LONG 8
+#define H5_SIZEOF_LONG 4
 
 /* The size of `long double', as computed by sizeof. */
-#define H5_SIZEOF_LONG_DOUBLE 16
+#define H5_SIZEOF_LONG_DOUBLE 8
 
 /* The size of `long long', as computed by sizeof. */
 #define H5_SIZEOF_LONG_LONG 8
@@ -446,16 +446,16 @@
 #define H5_SIZEOF_OFF_T 8
 
 /* The size of `ptrdiff_t', as computed by sizeof. */
-#define H5_SIZEOF_PTRDIFF_T 8
+#define H5_SIZEOF_PTRDIFF_T 4
 
 /* The size of `short', as computed by sizeof. */
 #define H5_SIZEOF_SHORT 2
 
 /* The size of `size_t', as computed by sizeof. */
-#define H5_SIZEOF_SIZE_T 8
+#define H5_SIZEOF_SIZE_T 4
 
 /* The size of `ssize_t', as computed by sizeof. */
-#define H5_SIZEOF_SSIZE_T 8
+#define H5_SIZEOF_SSIZE_T 4
 
 /* The size of `uint16_t', as computed by sizeof. */
 #define H5_SIZEOF_UINT16_T 2
@@ -470,10 +470,10 @@
 #define H5_SIZEOF_UINT8_T 1
 
 /* The size of `uint_fast16_t', as computed by sizeof. */
-#define H5_SIZEOF_UINT_FAST16_T 8
+#define H5_SIZEOF_UINT_FAST16_T 4
 
 /* The size of `uint_fast32_t', as computed by sizeof. */
-#define H5_SIZEOF_UINT_FAST32_T 8
+#define H5_SIZEOF_UINT_FAST32_T 4
 
 /* The size of `uint_fast64_t', as computed by sizeof. */
 #define H5_SIZEOF_UINT_FAST64_T 8
@@ -542,7 +542,7 @@
 #endif
 
 /* Number of bits in a file offset, on hosts where this is settable. */
-/* #undef H5__FILE_OFFSET_BITS */
+#define H5__FILE_OFFSET_BITS 64
 
 /* Define for large files, on AIX-style hosts. */
 /* #undef H5__LARGE_FILES */

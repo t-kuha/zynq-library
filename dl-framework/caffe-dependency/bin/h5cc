@@ -59,7 +59,7 @@ LIBSBASE=""
 EXIT_SUCCESS=0
 EXIT_FAILURE=1
 
-host_os="linux-gnu"
+host_os="linux-gnueabihf"
 
 prog_name="`basename $0`"
 
@@ -77,8 +77,8 @@ dash_c="no"
 get_output_file="no"
 
 SHOW="eval"
-CCBASE="gcc"
-CLINKERBASE="gcc"
+CCBASE="arm-linux-gnueabihf-gcc"
+CLINKERBASE="arm-linux-gnueabihf-gcc"
 
 # CFLAGS, CPPFLAGS and LDFLAGS are reserved for use by the script user.
 # FLAGS brought from the hdf5 build are put in H5BLD_*FLAGS.
@@ -90,9 +90,9 @@ CLINKERBASE="gcc"
 # from the hdf5 build. The order of the flags is intended to give precedence
 # to the user's flags.
 H5BLD_CFLAGS=" "
-H5BLD_CPPFLAGS=" "
+H5BLD_CPPFLAGS="-D_FILE_OFFSET_BITS=64  "
 H5BLD_LDFLAGS=" "
-H5BLD_LIBS="-lz -ldl -lm "
+H5BLD_LIBS="-ldl -lm "
 
 CC="${HDF5_CC:-$CCBASE}"
 CLINKER="${HDF5_CLINKER:-$CLINKERBASE}"

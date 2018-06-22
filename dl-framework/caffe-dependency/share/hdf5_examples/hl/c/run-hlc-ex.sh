@@ -34,7 +34,7 @@ EXIT_FAILURE=1
 prefix="${prefix:-../../../../}"
 PARALLEL=no             # Am I in parallel mode?
 AR="ar"
-RANLIB="ranlib"
+RANLIB="arm-linux-gnueabihf-ranlib"
 if [ "$PARALLEL" = no ]; then
     H5TOOL="h5cc"               # The tool name
 else
