@@ -25,10 +25,13 @@ Various Linux library files for Zynq-7000 series
 - Deep learning frameworks for Zynq
 
 - Caffe (1.0)
-
+  - http://caffe.berkeleyvision.org/
+  - https://github.com/BVLC/caffe
 
 - Caffe2 (Pytorch 0.4.0)
 
+- TensorFlow (1.9)
+  - https://www.tensorflow.org/
   
 ***
 #### Python
