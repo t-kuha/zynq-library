@@ -44,7 +44,7 @@ Various Linux library files for Zynq-7000 series
 - TensorFlow Lite (1.9.0)
   
 ***
-#### Python
-- Python executable for Zynq
+#### python
+- Python (3.6.5) executable for Zynq
 
-- Python 3.6.5
+  - https://www.python.org/
