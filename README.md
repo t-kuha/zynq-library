@@ -1,7 +1,15 @@
 ## zynq-library (2018.2)
 Various Linux library files for Zynq-7000 series
   
-   
+***
+#### arm
+
+- ARM ComputeLibrary & NN SDK
+
+  - https://developer.arm.com/technologies/compute-library
+  - https://developer.arm.com/products/processors/machine-learning/arm-nn
+
+
 ***
 #### imaging
 - Libaries for image/video I/O, proecssing etc.
@@ -22,7 +30,7 @@ Various Linux library files for Zynq-7000 series
   
 ***
 #### dl-framework
-- Deep learning frameworks for Zynq
+- Deep learning frameworks for Zynq (mostly C/C++ interface)
 
 - Caffe (1.0)
   - http://caffe.berkeleyvision.org/
@@ -32,9 +40,11 @@ Various Linux library files for Zynq-7000 series
 
 - TensorFlow (1.9)
   - https://www.tensorflow.org/
+
+- TensorFlow Lite (1.9.0)
   
 ***
 #### Python
-- Python executable 
+- Python executable for Zynq
 
 - Python 3.6.5
