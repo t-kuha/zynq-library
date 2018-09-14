@@ -36,13 +36,14 @@ Various Linux library files for Zynq-7000 series
   - http://caffe.berkeleyvision.org/
   - https://github.com/BVLC/caffe
 
-- Caffe2 (Pytorch 0.4.0)
+- Caffe2 (Pytorch 0.4.1)
 
 - TensorFlow (1.9)
   - https://www.tensorflow.org/
 
 - TensorFlow Lite (1.9.0)
-  
+
+
 ***
 #### python
 - Python (3.6.5) executable for Zynq
