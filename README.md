@@ -1,5 +1,16 @@
-## zynq-library
+## zynq-library (2018.3)
 
-- Various Linux library files for Zynq-7000 series.
+#### dl-framework
 
-- See branch 201x.y for actual files.
+- chainerx: Chainer X ver 6.0.0 beta1
+
+- tflite: TensorFlow Lite ver. 1.12.0
+
+
+#### imaging
+
+- ffmpeg: FFMPEG ver. 4.1
+
+- opencv: OpenCV ver. 4.0.0
+
+- freeimage: FreeImage ver. 3.18.0
