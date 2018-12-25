@@ -1,0 +1,14 @@
+prefix=/home/imagingtechnerd/work/libs/ffmpeg-4.1/_install
+exec_prefix=${prefix}
+libdir=/home/imagingtechnerd/work/libs/ffmpeg-4.1/_install/lib
+includedir=/home/imagingtechnerd/work/libs/ffmpeg-4.1/_install/include
+
+Name: libswscale
+Description: FFmpeg image rescaling library
+Version: 5.3.100
+Requires: 
+Requires.private: libavutil >= 56.22.100
+Conflicts:
+Libs: -L${libdir}  -lswscale 
+Libs.private: -lm
+Cflags: -I${includedir}

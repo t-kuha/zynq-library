@@ -1,0 +1,14 @@
+prefix=/home/imagingtechnerd/work/libs/ffmpeg-4.1/_install
+exec_prefix=${prefix}
+libdir=/home/imagingtechnerd/work/libs/ffmpeg-4.1/_install/lib
+includedir=/home/imagingtechnerd/work/libs/ffmpeg-4.1/_install/include
+
+Name: libavutil
+Description: FFmpeg utility library
+Version: 56.22.100
+Requires: 
+Requires.private: 
+Conflicts:
+Libs: -L${libdir}  -lavutil 
+Libs.private: -pthread -lm
+Cflags: -I${includedir}

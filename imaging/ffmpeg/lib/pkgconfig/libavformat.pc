@@ -1,0 +1,14 @@
+prefix=/home/imagingtechnerd/work/libs/ffmpeg-4.1/_install
+exec_prefix=${prefix}
+libdir=/home/imagingtechnerd/work/libs/ffmpeg-4.1/_install/lib
+includedir=/home/imagingtechnerd/work/libs/ffmpeg-4.1/_install/include
+
+Name: libavformat
+Description: FFmpeg container format library
+Version: 58.20.100
+Requires: 
+Requires.private: libavcodec >= 58.35.100, libswresample >= 3.3.100, libavutil >= 56.22.100
+Conflicts:
+Libs: -L${libdir}  -lavformat 
+Libs.private: -lm
+Cflags: -I${includedir}
