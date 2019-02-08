@@ -1,0 +1,14 @@
+# Package Information for pkg-config
+
+prefix=/home/pentaxmedical/data/kuriharat/zynq/work/_opencv/_install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir_old=${prefix}/include/opencv
+includedir_new=${prefix}/include
+
+Name: OpenCV
+Description: Open Source Computer Vision Library
+Version: 3.4.5
+Libs: -L${exec_prefix}/lib -lopencv_highgui -lopencv_video -lopencv_videoio -lopencv_imgcodecs -lopencv_imgproc -lopencv_core
+Libs.private: -ldl -lm -lpthread -lrt
+Cflags: -I${includedir_old} -I${includedir_new}
