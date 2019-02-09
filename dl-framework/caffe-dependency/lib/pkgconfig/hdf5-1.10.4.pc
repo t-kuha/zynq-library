@@ -1,0 +1,14 @@
+prefix=/home/pentaxmedical/tmp/hdf5-1.10.4/_zynq/_install
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: hdf5
+Description: HDF5 (Hierarchical Data Format 5) Software Library
+Version: 1.10.4
+
+Cflags: -I${includedir}
+Libs: -L${libdir}  -lhdf5
+Requires: 
+Libs.private:  -lm -ldl  -lhdf5
+Requires.private: 
