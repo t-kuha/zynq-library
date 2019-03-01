@@ -32,5 +32,9 @@ wget -O ${DST}/FreeImage3180.zip          http://downloads.sourceforge.net/freei
 wget -O ${DST}/ffmpeg-4.0.3.tar.xz        https://www.ffmpeg.org/releases/ffmpeg-4.0.3.tar.xz &
 wget -O ${DST}/opencv-4.0.1.tar.gz        https://github.com/opencv/opencv/archive/4.0.1.tar.gz &
 
+# for "arm"
+wget -O ${DST}/ComputeLibrary-v18.11.tar.gz https://github.com/ARM-software/ComputeLibrary/archive/v18.11.tar.gz
+wget -O ${DST}/armnn-v18.11.tar.gz        https://github.com/ARM-software/armnn/archive/v18.11.tar.gz
+
 # Execute in parallel
 wait
