@@ -9,6 +9,8 @@
 #include "chainerx/axes.h"
 #include "chainerx/backend.h"
 #include "chainerx/constant.h"
+#include "chainerx/dtype.h"
+#include "chainerx/error.h"
 #include "chainerx/scalar.h"
 #include "chainerx/shape.h"
 #include "chainerx/stack_vector.h"
@@ -31,49 +33,6 @@ public:
     virtual ~AveragePoolForwardBackward() = default;
     virtual Array Forward(const Array& x) = 0;
     virtual Array Backward(const Array& gout) = 0;
-};
-
-class BatchNormForwardBackward {
-public:
-    virtual ~BatchNormForwardBackward() = default;
-    virtual Array Forward(const Array& x, const Array& gamma, const Array& beta) = 0;
-    virtual std::array<Array, 3> Backward(const Array& gout) = 0;
-};
-
-class GenericBatchNormForwardBackward : public BatchNormForwardBackward {
-public:
-    GenericBatchNormForwardBackward(const Array& running_mean, const Array& running_var, Scalar eps, Scalar decay, Axes axis);
-
-    Array Forward(const Array& x, const Array& gamma, const Array& beta) override;
-    std::array<Array, 3> Backward(const Array& gout) override;
-
-protected:
-    void SetForwardResults(Array x, Array gamma, Array x_mean, Array x_inv_std);
-
-    const Array& running_mean() { return running_mean_; }
-    const Array& running_var() { return running_var_; }
-    Scalar eps() { return eps_; }
-    Scalar decay() { return decay_; }
-    const Axes& axis() { return axis_; }
-
-    // Forward results.
-    const Array& x() { return *x_; }
-    const Array& gamma() { return *gamma_; }
-    const Array& x_mean() { return *x_mean_; }
-    const Array& x_inv_std() { return *x_inv_std_; }
-
-private:
-    const Array& running_mean_;
-    const Array& running_var_;
-    Scalar eps_;
-    Scalar decay_;
-    Axes axis_;
-
-    // TODO(niboshi): Fix header dependency order and hold arrays directly.
-    std::shared_ptr<Array> x_;
-    std::shared_ptr<Array> gamma_;
-    std::shared_ptr<Array> x_mean_;
-    std::shared_ptr<Array> x_inv_std_;
 };
 
 // Device base class.
@@ -129,8 +88,6 @@ public:
 
     virtual void Arange(Scalar start, Scalar step, const Array& out) = 0;
 
-    virtual void ArgMax(const Array& a, const Axes& axis, const Array& out) = 0;
-
     // Calculate the sum of an array.
     // It will be summed over the specified axes.
     // `axis` must be normalized so that
@@ -152,12 +109,6 @@ public:
     // Casts the elements from one array to the other dtype, and store into the other.
     virtual void AsType(const Array& a, const Array& out) = 0;
 
-    virtual void Equal(const Array& x1, const Array& x2, const Array& out) = 0;
-    virtual void NotEqual(const Array& x1, const Array& x2, const Array& out) = 0;
-    virtual void Greater(const Array& x1, const Array& x2, const Array& out) = 0;
-    virtual void GreaterEqual(const Array& x1, const Array& x2, const Array& out) = 0;
-    virtual void LogicalNot(const Array& x1, const Array& out) = 0;
-
     virtual void Add(const Array& x1, const Array& x2, const Array& out) = 0;
     virtual void AddAS(const Array& x1, Scalar x2, const Array& out) = 0;
 
@@ -167,6 +118,9 @@ public:
     virtual void Multiply(const Array& x1, const Array& x2, const Array& out) = 0;
     virtual void MultiplyAS(const Array& x1, Scalar x2, const Array& out) = 0;
 
+    virtual void FloorDivide(const Array& x1, const Array& x2, const Array& out) = 0;
+    virtual void FloorDivideAS(const Array& x1, Scalar x2, const Array& out) = 0;
+
     virtual void Divide(const Array& x1, const Array& x2, const Array& out) = 0;
     virtual void DivideAS(const Array& x1, Scalar x2, const Array& out) = 0;
 
@@ -174,6 +128,12 @@ public:
     //
     // Formally, it calculates: out = x1 < x2 ? pos : neg
     virtual void IfLessElseASSA(const Array& x1, Scalar x2, Scalar pos, const Array& neg, const Array& out) = 0;
+
+    // Compares x1 and x2 and assign either pos or neg according to the result.
+    //
+    // Formally, it calculates: out = x1 > x2 ? pos : neg
+    virtual void IfGreaterElseASSA(const Array& x1, Scalar x2, Scalar pos, const Array& neg, const Array& out) = 0;
+    virtual void IfGreaterElseAAAA(const Array& x1, const Array& x2, const Array& pos, const Array& neg, const Array& out) = 0;
 
     virtual void Tanh(const Array& x, const Array& out) = 0;
 
@@ -186,24 +146,12 @@ public:
     virtual void Exp(const Array& x, const Array& out) = 0;
     virtual void Log(const Array& x, const Array& out) = 0;
 
+    virtual void Square(const Array& x, const Array& out) = 0;
+
     virtual void Sqrt(const Array& x, const Array& out) = 0;
 
     virtual void IsNan(const Array& x, const Array& out) = 0;
     virtual void IsInf(const Array& x, const Array& out) = 0;
-
-    // Takes elements specified by indices from an array.
-    // Indices that are out of bounds are wrapped around.
-    //
-    // `axis` must be within [0, a.ndim()).
-    virtual void Take(const Array& a, const Array& indices, int8_t axis, const Array& out) = 0;
-
-    // Adds each slice of `b` along the axis `axis` to `a`'s corresponding slices, specified by `indices`.
-    // The result is assigned in `out. Input arrays `a`, `indices`, and `b` are not altered.
-    //
-    // TODO(niboshi): This function may be replaced with full-featured assignable advanced indexing.
-    //
-    // `axis` must be within [0, b.ndim()).
-    virtual void AddAt(const Array& a, const Array& indices, int8_t axis, const Array& b, const Array& out) = 0;
 
     // Creates the identity array.
     // out must be a square 2-dim array.
@@ -232,7 +180,8 @@ public:
             const nonstd::optional<Array>& b,
             const StackVector<int64_t, kMaxNdim>& stride,
             const StackVector<int64_t, kMaxNdim>& pad,
-            bool cover_all) = 0;
+            bool cover_all,
+            Dtype out_dtype) = 0;
 
     virtual Array ConvGradWeight(
             Dtype w_dtype,
@@ -256,7 +205,8 @@ public:
             const nonstd::optional<Array>& b,
             const StackVector<int64_t, kMaxNdim>& stride,
             const StackVector<int64_t, kMaxNdim>& pad,
-            const StackVector<int64_t, kMaxNdim>& out_size) = 0;
+            const StackVector<int64_t, kMaxNdim>& out_size,
+            Dtype out_dtype) = 0;
 
     virtual std::unique_ptr<MaxPoolForwardBackward> GetMaxPoolForwardBackward(
             const StackVector<int64_t, kMaxNdim>& kernel_size,
@@ -269,14 +219,6 @@ public:
             const StackVector<int64_t, kMaxNdim>& stride,
             const StackVector<int64_t, kMaxNdim>& pad,
             AveragePoolPadMode pad_mode) = 0;
-
-    virtual std::unique_ptr<BatchNormForwardBackward> GetBatchNormForwardBackward(
-            const Array& running_mean, const Array& running_var, Scalar eps, Scalar decay, const Axes& axis) {
-        return std::make_unique<GenericBatchNormForwardBackward>(running_mean, running_var, eps, decay, axis);
-    }
-
-    virtual Array FixedBatchNorm(
-            const Array& x, const Array& gamma, const Array& beta, const Array& mean, const Array& var, Scalar eps, const Axes& axis);
 
     virtual void Synchronize() = 0;
 
