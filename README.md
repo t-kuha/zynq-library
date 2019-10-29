@@ -29,7 +29,7 @@ Library files for Zynq-7000 (32bit ARM CPU)
 
 - chainerx: ChainerX (v6.0.0)
 
-- tflite: TensorFlow Lite ver. 1.12.0
+- tflite: TensorFlow Lite ver. 1.15.0
 
 ## imaging: Library for image I/O and manipulation
 
